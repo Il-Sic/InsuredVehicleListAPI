@@ -1,0 +1,13 @@
+package prova.example.batchlogapi;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class BatchLogApiApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
