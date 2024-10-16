@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Logging
+  version: 1.0.0
+paths:
+  /log:
+    post:
+      summary: Log data from batch process
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timeOfInvocation:
+                  type: string
+                  format: date-time
+                  example: "2024-10-16T08:30:00Z"
+                recordNumber:
+                  type: integer
+                  example: 1
+                actualPayload:
+                  type: string
+                  example: "Payload string content"
+      responses:
+        '200':
+          description: Log successfully received
+        '400':
+          description: Bad request
