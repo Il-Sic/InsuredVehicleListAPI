@@ -28,3 +28,18 @@ paths:
           description: Log successfully received
         '400':
           description: Bad request
+components:
+  schemas:
+    LogEntry:
+      type: object
+      properties:
+        timeOfInvocation:
+          type: string
+          format: date-time
+          example: "2024-10-16T08:30:00Z"
+        recordNumber:
+          type: integer
+          example: 1
+        actualPayload:
+          type: string
+          example: "Payload string content"

@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: Logging
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /log:
+    post:
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          application/json:
+            schema:
+              properties:
+                timeOfInvocation:
+                  example: 2024-10-16T08:30:00Z
+                  format: date-time
+                  type: string
+                recordNumber:
+                  example: 1
+                  type: integer
+                actualPayload:
+                  example: Payload string content
+                  type: string
+              type: object
+        required: true
+      responses:
+        "200":
+          description: Log successfully received
+        "400":
+          description: Bad request
+      summary: Log data from batch process
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  requestBodies:
+    inline_object:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object'
+      required: true
+  schemas:
+    inline_object:
+      properties:
+        timeOfInvocation:
+          example: 2024-10-16T08:30:00Z
+          format: date-time
+          type: string
+        recordNumber:
+          example: 1
+          type: integer
+        actualPayload:
+          example: Payload string content
+          type: string
+      type: object
+
