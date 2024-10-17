@@ -1,5 +1,6 @@
 package controller;
 
+import model.LogRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
