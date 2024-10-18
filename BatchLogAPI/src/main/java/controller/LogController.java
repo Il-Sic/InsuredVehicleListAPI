@@ -1,18 +1,28 @@
 package controller;
 
-import model.LogRequest;
+import entity.Invocation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import repository.InvocationRepository;
 
 @RestController
 @RequestMapping("/log")
-public class LogController
-{
+public class LogController {
+
+    @Autowired
+    private InvocationRepository invocationRepository;
+
     @PostMapping
-    public String logData(@RequestBody LogRequest request)
+    public void logInvocation(@RequestBody Invocation invocation)
     {
-        System.out.println("Time of Invocation: " + request.getTimeOfInvocation());
-        System.out.println("Record Number: " + request.getRecordNumber());
-        System.out.println("Actual Payload: " + request.getActualPayload());
-        return "Log received";
+
+        System.out.println("Time of Invocation: " + invocation.getTimeOfInvocation());
+        System.out.println("Record Number: " + invocation.getRecordNumber());
+        System.out.println("Actual Payload: " + invocation.getActualPayload());
+
+        invocationRepository.save(invocation);
+
     }
 }
