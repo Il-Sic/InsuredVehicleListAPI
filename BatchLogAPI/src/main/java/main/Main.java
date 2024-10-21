@@ -3,10 +3,8 @@ package main;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = {"controller", "dto", "repository", "entity"})
-@EnableJpaRepositories(basePackages = "repository")
+@SpringBootApplication(scanBasePackages = {"controller", "entity"})
 @EntityScan(basePackages = "entity")
 public class Main {
 
