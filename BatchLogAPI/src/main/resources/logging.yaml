@@ -21,8 +21,7 @@ paths:
                   type: integer
                   example: 1
                 actualPayload:
-                  type: string
-                  example: "Payload string content"
+                  $ref: '#/components/schemas/Payload'
       responses:
         '200':
           description: Log successfully received
@@ -41,5 +40,32 @@ components:
           type: integer
           example: 1
         actualPayload:
+          $ref: '#/components/schemas/Payload'
+    Payload:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        idPol:
+          type: integer
+          example: 123
+        cdescr:
           type: string
-          example: "Payload string content"
+          example: "Description of the payload"
+        dexpcur:
+          type: string
+          format: date-time
+          example: "2024-10-16T08:30:00Z"
+        cplate:
+          type: string
+          example: "ABC123"
+        cbrand:
+          type: string
+          example: "BrandName"
+        cmodel:
+          type: string
+          example: "ModelName"
+        cver:
+          type: string
+          example: "1.0"
