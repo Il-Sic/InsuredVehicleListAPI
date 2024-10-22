@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class LogEntry extends com.model.LogEntry {
+public class LogEntry  {
 
   @Id
   private Integer id;

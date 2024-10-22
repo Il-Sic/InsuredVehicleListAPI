@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Entity
-public class Payload extends com.model.Payload {
+public class Payload {
   @Id
   private Integer id;
 
