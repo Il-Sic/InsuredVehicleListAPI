@@ -14,7 +14,6 @@ import java.time.OffsetDateTime;
 @Table(name = "log_entry")
 public class LogEntryEntity
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

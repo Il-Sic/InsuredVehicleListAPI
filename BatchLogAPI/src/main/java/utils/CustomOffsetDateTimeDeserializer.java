@@ -14,9 +14,8 @@ public class CustomOffsetDateTimeDeserializer extends JsonDeserializer<OffsetDat
     public OffsetDateTime deserialize(JsonParser p, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
         String date = p.getText();
-        // Aggiungi un offset se non presente
         if (date.length() == 10) {
-            date += "T00:00:00Z"; // Assumiamo UTC se il tempo non è fornito
+            date += "T00:00:00Z";
         }
         return OffsetDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
     }

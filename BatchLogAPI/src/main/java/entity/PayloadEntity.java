@@ -14,7 +14,6 @@ import java.time.OffsetDateTime;
 @Table(name = "payload")
 public class PayloadEntity
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
