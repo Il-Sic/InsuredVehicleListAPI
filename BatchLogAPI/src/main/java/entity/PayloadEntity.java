@@ -1,7 +1,9 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.Setter;
+import utils.CustomOffsetDateTimeDeserializer;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
@@ -20,6 +22,7 @@ public class PayloadEntity {
 
     private String cdescr;
 
+    @JsonDeserialize(using = CustomOffsetDateTimeDeserializer.class)
     private OffsetDateTime dexpcur;
 
     private String cplate;
@@ -29,5 +32,20 @@ public class PayloadEntity {
     private String cmodel;
 
     private String cver;
+
+    @Override
+    public String toString()
+    {
+        return "PayloadEntity{" +
+                "id=" + id +
+                ", idPol=" + idPol +
+                ", cdescr='" + cdescr + '\'' +
+                ", dexpcur=" + dexpcur +
+                ", cplate='" + cplate + '\'' +
+                ", cbrand='" + cbrand + '\'' +
+                ", cmodel='" + cmodel + '\'' +
+                ", cver='" + cver + '\'' +
+                '}';
+    }
 }
 

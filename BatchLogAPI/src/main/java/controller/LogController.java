@@ -1,10 +1,10 @@
 package controller;
 
 import entity.LogEntryEntity;
+import entity.PayloadEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.openapitools.api.LogApi;
 import org.openapitools.model.LogPostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,14 +16,12 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/log")
-public class LogController implements LogApi
-{
+public class LogController {
 
     private final LogService logService;
 
     @Autowired
-    public LogController(LogService logService)
-    {
+    public LogController(LogService logService) {
         this.logService = logService;
     }
 
@@ -36,10 +34,25 @@ public class LogController implements LogApi
             }
     )
 
-    public void logInvocation (@RequestBody LogEntryEntity logEntry)
+    @PostMapping
+    public void logPost (@RequestBody LogPostRequest logPostRequest)
     {
-        System.out.println("Time of Invocation: " + logEntry.getTimeOfInvocation());
-        System.out.println("Record Number: " + logEntry.getRecordNumber());
-        System.out.println("Actual Payload: " + logEntry.getActualPayload().toString());
+        LogEntryEntity logEntry = new LogEntryEntity();
+        logEntry.setTimeOfInvocation(logPostRequest.getTimeOfInvocation());
+        logEntry.setRecordNumber(logPostRequest.getRecordNumber());
+
+        PayloadEntity payLoad = new PayloadEntity();
+        payLoad.setIdPol(logPostRequest.getActualPayload().getIdPol());
+        payLoad.setCdescr(logPostRequest.getActualPayload().getCdescr());
+        payLoad.setDexpcur(logPostRequest.getActualPayload().getDexpcur());
+        payLoad.setCplate(logPostRequest.getActualPayload().getCplate());
+        payLoad.setCbrand(logPostRequest.getActualPayload().getCbrand());
+        payLoad.setCmodel(logPostRequest.getActualPayload().getCmodel());
+        payLoad.setCver(logPostRequest.getActualPayload().getCver());
+
+        System.out.println(logEntry.getTimeOfInvocation());
+        System.out.println(logEntry.getRecordNumber());
+        System.out.println(payLoad.toString());
+
     }
 }

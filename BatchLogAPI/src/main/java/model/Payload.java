@@ -2,8 +2,10 @@ package model;
 
 import java.time.OffsetDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.Setter;
+import utils.CustomOffsetDateTimeDeserializer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,21 +19,12 @@ public class Payload {
 
   private Integer idPol;
   private String cdescr;
+  @JsonDeserialize(using = CustomOffsetDateTimeDeserializer.class)
   private OffsetDateTime dexpcur;
   private String cplate;
   private String cbrand;
   private String cmodel;
   private String cver;
-
-  public void updateFields(Payload updatedPayload) {
-    this.idPol = updatedPayload.getIdPol();
-    this.cdescr = updatedPayload.getCdescr();
-    this.dexpcur = updatedPayload.getDexpcur();
-    this.cplate = updatedPayload.getCplate();
-    this.cbrand = updatedPayload.getCbrand();
-    this.cmodel = updatedPayload.getCmodel();
-    this.cver = updatedPayload.getCver();
-  }
 
   @Override
   public String toString() {
