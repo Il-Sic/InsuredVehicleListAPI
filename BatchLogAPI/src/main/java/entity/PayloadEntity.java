@@ -12,7 +12,8 @@ import java.time.OffsetDateTime;
 @Setter
 @Entity
 @Table(name = "payload")
-public class PayloadEntity {
+public class PayloadEntity
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,16 +37,28 @@ public class PayloadEntity {
     @Override
     public String toString()
     {
-        return "PayloadEntity{" +
-                "id=" + id +
-                ", idPol=" + idPol +
-                ", cdescr='" + cdescr + '\'' +
-                ", dexpcur=" + dexpcur +
-                ", cplate='" + cplate + '\'' +
-                ", cbrand='" + cbrand + '\'' +
-                ", cmodel='" + cmodel + '\'' +
-                ", cver='" + cver + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Payload \n");
+        sb.append("{ \n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    idPol: ").append(toIndentedString(idPol)).append("\n");
+        sb.append("    cdescr: ").append(toIndentedString(cdescr)).append("\n");
+        sb.append("    dexpcur: ").append(toIndentedString(dexpcur)).append("\n");
+        sb.append("    cplate: ").append(toIndentedString(cplate)).append("\n");
+        sb.append("    cbrand: ").append(toIndentedString(cbrand)).append("\n");
+        sb.append("    cmodel: ").append(toIndentedString(cmodel)).append("\n");
+        sb.append("    cver: ").append(toIndentedString(cver)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private String toIndentedString(Object o)
+    {
+        if (o == null)
+        {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
     }
 }
 
