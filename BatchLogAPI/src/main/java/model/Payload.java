@@ -14,29 +14,28 @@ import javax.persistence.Id;
 @Setter
 @Entity
 public class Payload {
-  @Id
-  private Integer id;
+    @Id
+    private Integer id;
 
-  private Integer idPol;
-  private String cdescr;
-  @JsonDeserialize(using = CustomOffsetDateTimeDeserializer.class)
-  private OffsetDateTime dexpcur;
-  private String cplate;
-  private String cbrand;
-  private String cmodel;
-  private String cver;
+    private Integer idPol;
+    private String cdescr;
+    @JsonDeserialize(using = CustomOffsetDateTimeDeserializer.class)
+    private OffsetDateTime dexpcur;
+    private String cplate;
+    private String cbrand;
+    private String cmodel;
+    private String cver;
 
-  @Override
-  public String toString() {
-    return "Payload{" +
-            "id=" + id +
-            ", idPol=" + idPol +
-            ", cdescr='" + cdescr + '\'' +
-            ", dexpcur=" + dexpcur +
-            ", cplate='" + cplate + '\'' +
-            ", cbrand='" + cbrand + '\'' +
-            ", cmodel='" + cmodel + '\'' +
-            ", cver='" + cver + '\'' +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Payload{" +
+                "idPol=" + idPol +
+                ", cdescr='" + cdescr + '\'' +
+                ", dexpcur=" + dexpcur +
+                ", cplate='" + cplate + '\'' +
+                ", cbrand='" + cbrand + '\'' +
+                ", cmodel='" + cmodel + '\'' +
+                ", cver='" + cver + '\'' +
+                '}';
+    }
 }

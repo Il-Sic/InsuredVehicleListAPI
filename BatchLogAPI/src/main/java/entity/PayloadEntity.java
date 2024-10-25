@@ -12,8 +12,7 @@ import java.time.OffsetDateTime;
 @Setter
 @Entity
 @Table(name = "payload")
-public class PayloadEntity
-{
+public class PayloadEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,12 +33,10 @@ public class PayloadEntity
     private String cver;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Payload \n");
         sb.append("{ \n");
-        sb.append("    id: ").append(toIndentedString(id)).append("\n");
         sb.append("    idPol: ").append(toIndentedString(idPol)).append("\n");
         sb.append("    cdescr: ").append(toIndentedString(cdescr)).append("\n");
         sb.append("    dexpcur: ").append(toIndentedString(dexpcur)).append("\n");
@@ -51,10 +48,8 @@ public class PayloadEntity
         return sb.toString();
     }
 
-    private String toIndentedString(Object o)
-    {
-        if (o == null)
-        {
+    private String toIndentedString(Object o) {
+        if (o == null) {
             return "null";
         }
         return o.toString().replace("\n", "\n    ");

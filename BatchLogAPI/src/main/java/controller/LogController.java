@@ -15,21 +15,20 @@ import service.LogService;
 
 import java.util.Optional;
 
+import static utils.PayloadUtils.createPopulatePayloadEntity;
+
 @RestController
 @RequestMapping("/log")
-public class LogController implements LogApi
-{
+public class LogController implements LogApi {
     private final LogService logService;
 
     @Autowired
-    public LogController(LogService logService)
-    {
+    public LogController(LogService logService) {
         this.logService = logService;
     }
 
     @Override
-    public Optional<NativeWebRequest> getRequest()
-    {
+    public Optional<NativeWebRequest> getRequest() {
         return LogApi.super.getRequest();
     }
 
@@ -43,41 +42,28 @@ public class LogController implements LogApi
             }
     )
     @PostMapping(consumes = "application/json")
-    public ResponseEntity<Void> logPost(@RequestBody LogPostRequest logPostRequest)
-    {
-        try
-        {
+    public ResponseEntity<Void> logPost(@RequestBody LogPostRequest logPostRequest) {
+        try {
             LogEntryEntity logEntry = new LogEntryEntity();
             logEntry.setTimeOfInvocation(logPostRequest.getTimeOfInvocation());
             logEntry.setRecordNumber(logPostRequest.getRecordNumber());
 
-            PayloadEntity payload = getPayloadEntity (logPostRequest);
+            PayloadEntity payload = getPayloadEntity(logPostRequest);
 
             logEntry.setActualPayload(payload);
 
             logService.saveLogEntry(logEntry, payload);
 
             System.out.println(logEntry);
-            System.out.println(payload);
+            //System.out.println(payload);  se si vuole vedere solo payload
 
             return ResponseEntity.status(HttpStatus.OK).build();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
-    private static PayloadEntity getPayloadEntity(LogPostRequest logPostRequest)
-    {
-        PayloadEntity payload = new PayloadEntity();
-        payload.setIdPol(logPostRequest.getActualPayload().getIdPol());
-        payload.setCdescr(logPostRequest.getActualPayload().getCdescr());
-        payload.setDexpcur(logPostRequest.getActualPayload().getDexpcur());
-        payload.setCplate(logPostRequest.getActualPayload().getCplate());
-        payload.setCbrand(logPostRequest.getActualPayload().getCbrand());
-        payload.setCmodel(logPostRequest.getActualPayload().getCmodel());
-        payload.setCver(logPostRequest.getActualPayload().getCver());
-        return payload;
+    private static PayloadEntity getPayloadEntity(LogPostRequest logPostRequest) {
+        return createPopulatePayloadEntity(logPostRequest);
     }
 }

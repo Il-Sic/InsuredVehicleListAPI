@@ -12,8 +12,7 @@ import java.time.OffsetDateTime;
 @Setter
 @Entity
 @Table(name = "log_entry")
-public class LogEntryEntity
-{
+public class LogEntryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,8 +27,7 @@ public class LogEntryEntity
     private PayloadEntity actualPayload;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("LogEntry \n");
         sb.append("{ \n");
@@ -40,10 +38,8 @@ public class LogEntryEntity
         return sb.toString();
     }
 
-    private String toIndentedString(Object o)
-    {
-        if (o == null)
-        {
+    private String toIndentedString(Object o) {
+        if (o == null) {
             return "null";
         }
         return o.toString().replace("\n", "\n    ");
